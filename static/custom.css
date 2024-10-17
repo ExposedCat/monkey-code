@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#editor {
+  position: absolute;
+  z-index: 150;
+  width: 90%;
+  height: 95%;
+  border-radius: 8px;
+  overflow: hidden;
+}
