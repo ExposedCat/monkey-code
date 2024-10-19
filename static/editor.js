@@ -32,7 +32,7 @@ window.addEventListener('game-loaded', () => {
 
     const editorElement = document.querySelector('#editor')
     editor = monaco.editor.create(editorElement, {
-      value: '// `gameSDK` object is globally available\n',
+      value: '// Use `window.gameSDK` to interact with the game\n',
       language: 'typescript',
       theme: 'vs-dark',
       minimap: { enabled: false },
@@ -70,5 +70,11 @@ window.addEventListener('close-editor', () => setEditorVisible(false))
 
 window.addEventListener('DOMContentLoaded', () => {
   const save = document.querySelector('#save')
-  save.addEventListener('click', () => setEditorVisible(false))
+  save.addEventListener('click', () => {
+    const code = editor.getValue();
+    setEditorVisible(false);
+
+    // Unsafe
+    eval(code)
+  })
 })

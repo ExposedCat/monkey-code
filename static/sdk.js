@@ -1,8 +1,19 @@
 const gameSdkTypes = /*ts*/`
-  declare type GameEvent = 'spawned';
+  declare type Enemy = {
+    id: number;
+    followPlayer(follow: boolean): void;
+  }
 
-  declare const gameSDK: {
-    // TODO:
+  declare type EnemyEventMap = {
+    spawned: (enemy: Enemy) => void;
+  };
+
+  declare type EnemyEventName = keyof EnemyEventMap;
+
+  declare const gameSdk: {
+    enemy: {
+      on: <N extends EnemyEventName>(name: N, callback: EnemyEventMap[N]) => void
+    };
   };
 `
 
