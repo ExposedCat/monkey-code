@@ -1,6 +1,3 @@
-const editorElement = document.querySelector('#editor')
-const envelope = document.querySelector('#envelope')
-
 let editor = null
 
 window.addEventListener('game-loaded', () => {
@@ -39,7 +36,8 @@ window.addEventListener('game-loaded', () => {
 
     monaco.languages.typescript.javascriptDefaults.addExtraLib(gameSdkTypes, gameSdkUri);
     monaco.editor.createModel(gameSdkTypes, "typescript", monaco.Uri.parse(gameSdkUri));
-    
+
+    const editorElement = document.querySelector('#editor')
     editor = monaco.editor.create(editorElement, {
       value: '// `gameSDK` object is globally available\n',
       language: 'typescript',
@@ -63,11 +61,21 @@ window.addEventListener('game-loaded', () => {
   });
 });
 
-window.addEventListener('open-editor', () => {
-  envelope.style.display = 'flex';
-  editor?.layout();
-})
+function setEditorVisible(visible) {
+  const canvas = document.querySelector('#canvas')
+  const envelope = document.querySelector('#envelope')
+  envelope.style.display = visible ? 'flex' : 'none';
+  if (visible) {
+    editor?.layout();
+  } else {
+    canvas.focus();
+  }
+}
 
-window.addEventListener('close-editor', () => {
-  envelope.style.display = 'none';
+window.addEventListener('open-editor', () => setEditorVisible(true))
+window.addEventListener('close-editor', () => setEditorVisible(false))
+
+window.addEventListener('DOMContentLoaded', () => {
+  const save = document.querySelector('#save')
+  save.addEventListener('click', () => setEditorVisible(false))
 })
