@@ -26,13 +26,6 @@ window.addEventListener('game-loaded', () => {
     });
 
     const gameSdkUri = 'ts:filename/game-sdk.d.ts';
-    const gameSdkTypes = /*ts*/`
-      declare type GameEvent = 'slime-spawned';
-
-      declare const gameSDK: {
-        on: (event: GameEvent, cb: () => void) => void;
-      };
-    `
 
     monaco.languages.typescript.javascriptDefaults.addExtraLib(gameSdkTypes, gameSdkUri);
     monaco.editor.createModel(gameSdkTypes, "typescript", monaco.Uri.parse(gameSdkUri));

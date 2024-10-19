@@ -12,7 +12,7 @@ func _init():
       _godot_dispatch: (name, data) => godotBridge._events.dispatchEvent(new CustomEvent(name, { detail: data })),
       on: (name, callback) => godotBridge._events.addEventListener(name, callback),
       off: (name, callback) => godotBridge._events.removeEventListener(name, callback),
-      dispatch: (name, args = []) => window.godotBridge._callbacks[name]?.forEach(callback => callback(...args)),
+      dispatch: (name, args = []) => window.godotBridge._godot_callbacks[name]?.forEach(callback => callback(...args)),
     };
 	""", true)
 
