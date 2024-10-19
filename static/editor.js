@@ -1,4 +1,7 @@
 const editorElement = document.querySelector('#editor')
+const envelope = document.querySelector('#envelope')
+
+let editor = null
 
 window.addEventListener('game-loaded', () => {
   window.MonacoEnvironment = {
@@ -37,7 +40,7 @@ window.addEventListener('game-loaded', () => {
     monaco.languages.typescript.javascriptDefaults.addExtraLib(gameSdkTypes, gameSdkUri);
     monaco.editor.createModel(gameSdkTypes, "typescript", monaco.Uri.parse(gameSdkUri));
     
-    monaco.editor.create(editorElement, {
+    editor = monaco.editor.create(editorElement, {
       value: '// `gameSDK` object is globally available\n',
       language: 'typescript',
       theme: 'vs-dark',
@@ -57,15 +60,14 @@ window.addEventListener('game-loaded', () => {
         showKeywords: true
       }
     });
-    
-    window.dispatchEvent(new CustomEvent('close-editor'));
   });
 });
 
 window.addEventListener('open-editor', () => {
-  editorElement.style.display = 'flex';
+  envelope.style.display = 'flex';
+  editor?.layout();
 })
 
 window.addEventListener('close-editor', () => {
-  editorElement.style.display = 'none';
+  envelope.style.display = 'none';
 })
