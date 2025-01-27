@@ -18,7 +18,7 @@ func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
 	enemy.position = get_random_position()
 
-	get_parent().add_child(enemy)
+	get_parent().add_child.call_deferred(enemy)
 	
 	current_enemies += 1
 	enemy.connect("tree_exiting", self._on_enemy_removed)

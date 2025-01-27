@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://0se83qcwni2b"]
+[gd_scene load_steps=95 format=4 uid="uid://0se83qcwni2b"]
 
 [ext_resource type="Texture2D" uid="uid://ctt1q8ywo28s" path="res://assets/map/Bridge_Wood.png" id="1_1qbas"]
 [ext_resource type="Texture2D" uid="uid://bcpflkiorps63" path="res://assets/map/Chest.png" id="2_54ysx"]
@@ -63,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://dn1uu1pxce3u7" path="res://assets/character/tile041.png" id="61_8c285"]
 [ext_resource type="Script" path="res://scenes/world/scripts/enemy_spawner.gd" id="62_q5xkf"]
 [ext_resource type="Script" path="res://scenes/world/scripts/ui_handler.gd" id="63_aasgi"]
+[ext_resource type="Script" path="res://scenes/world/stone_spawner.gd" id="63_j2fgb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drea3"]
 texture = ExtResource("1_1qbas")
@@ -660,12 +661,16 @@ sprite_frames = SubResource("SpriteFrames_vldui")
 animation = &"moving-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player"]
+position = Vector2(0.000946404, 6)
 shape = SubResource("CapsuleShape2D_np565")
 
 [node name="Enemy Spawner" type="Timer" parent="Entities"]
 wait_time = 3.0
 autostart = true
 script = ExtResource("62_q5xkf")
+
+[node name="Stone Spawner" type="Node" parent="Entities"]
+script = ExtResource("63_j2fgb")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("63_aasgi")

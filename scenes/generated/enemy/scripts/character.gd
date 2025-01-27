@@ -6,9 +6,10 @@ extends CharacterBody2D
 @export var speed = 50
 @export var following = false
 
+
 var set_follow__js = JavaScriptBridge.create_callback(set_follow)
 func set_follow(args):
-	if self.get_instance_id() == args[0]:
+	if get_instance_id() == args[0]:
 		following = args[1]
 
 func _enter_tree() -> void:
@@ -18,7 +19,7 @@ func _enter_tree() -> void:
 		"id": get_instance_id()
 	})
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var stand = func():
 		$AnimatedSprite2D.play("standing")
 		velocity = Vector2.ZERO
@@ -35,10 +36,3 @@ func _physics_process(delta: float) -> void:
 			stand.call()
 	else:
 		stand.call()
-
-
-
-func _on_input_event(viewport:Node, event:InputEvent, shape_idx:int) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			emit_signal("click:enemy", self.get_instance_id())
