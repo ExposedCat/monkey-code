@@ -156,9 +156,6 @@ position = Vector2(-0.0370026, -0.33334)
 shape = SubResource("CircleShape2D_wdlmy")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Character"]
-debug_path_custom_color = Color(1, 0.301369, 0.732547, 1)
-debug_path_custom_point_size = 8.0
-debug_path_custom_line_width = 3.95
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Character/NavigationAgent2D"]
 navigation_polygon = SubResource("NavigationPolygon_lqjy5")

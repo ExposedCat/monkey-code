@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D
 
 @export var speed = 50
-@export var following = false
+@export var following = true
 
 
 var set_follow__js = JavaScriptBridge.create_callback(set_follow)

@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func hit():
 	hp -= 1
+	InventoryManager.add_item({ "type": "stone", "amount": 1 })
 	if hp == 0:
 		queue_free()
 	$Sprite2D.region_rect = Rect2((3 - hp) * 30, 0, 30, 32)
