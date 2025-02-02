@@ -3,8 +3,8 @@ extends Control
 var box_scene = preload("res://scenes/world/generated/inventory_item.tscn")
 
 func _ready() -> void:
-	update(InventoryManager.get_inventory())
-	InventoryManager.inventory_change.connect(update)
+	update(InventoryManager.player.get_inventory())
+	InventoryManager.player.inventory_change.connect(update)
 	
 func update(inventory) -> void:
 	for child in get_children():

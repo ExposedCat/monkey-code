@@ -5,9 +5,9 @@ var hp: int = 3
 func _ready() -> void:
 	add_to_group("hittable")
 
-func hit():
+func hit(inventory: InventoryManager.Inventory):
 	hp -= 1
-	InventoryManager.add_item({ "type": "stone", "amount": 1 })
+	inventory.add_item("stone", 1)
 	if hp == 0:
 		queue_free()
 	$Sprite2D.region_rect = Rect2((3 - hp) * 30, 0, 30, 32)

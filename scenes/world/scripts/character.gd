@@ -31,7 +31,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Hit"):
 		var nearest = get_nearest_hittable()
 		if nearest[0] != null and nearest[1] <= hit_range:
-			nearest[0].hit()
+			nearest[0].hit(InventoryManager.player)
 		
 	action = "standing" if velocity == Vector2.ZERO else "moving";
 	$AnimatedSprite2D.play("%s-%s" % [action, last_direction]);
