@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Monkey Code"
-run/main_scene="res://scenes/world/scene.tscn"
+run/main_scene="res://scenes/main/scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Bridge="*res://scripts/bridge.gd"
-Constants="*res://constants.gd"
-InventoryManager="*res://inventory_manager.gd"
+Bridge="*res://global/bridge.gd"
+Constants="*res://global/constants.gd"
+InventoryManager="*res://global/inventory_manager.gd"
 
 [dotnet]
 
