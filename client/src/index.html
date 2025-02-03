@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>$GODOT_PROJECT_NAME</title>
-  <link rel="stylesheet" href="static/custom.css">
+  <link rel="stylesheet" href="./client/style/main.css">
 </head>
 
 <body>
@@ -24,15 +24,14 @@
   <script>
     var GODOT_CONFIG = $GODOT_CONFIG;
   </script>
-  <script src="static/godot.js"></script>
-  <script src="static/sdk.js"></script>
 
   <!-- Load TypeScript -->
-  <script src="https://unpkg.com/typescript@latest/lib/typescript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.7.3/typescript.min.js"></script>
   <!-- Load Editor -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
   <!-- Load client JS -->
-  <script src="static/editor.js"></script>
+  <script src="./client/sdk-types.js"></script>
+  <script src="./client/bundle.js"></script>
 </body>
 
 </html>
