@@ -1,5 +1,19 @@
 let editor = null
 
+const commonConfig = {
+	allowNonTsExtensions: true,
+	strict: true,
+	noImplicityAny: true,
+	noSemanticValidation: false,
+	noSyntaxValidation: false,
+}
+
+const tsConfig = {
+	...commonConfig,
+	target: "ESNext",
+	moduleResolution: "NodeJS",
+}
+
 window.addEventListener('game-loaded', () => {
 	window.MonacoEnvironment = {
 		getWorkerUrl: (_moduleId, _label) => {
@@ -15,15 +29,14 @@ window.addEventListener('game-loaded', () => {
 	require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs' } });
 
 	require(['vs/editor/editor.main'], () => {
-		monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+
+		const monakoConfig = {
+			...commonConfig,
 			target: monaco.languages.typescript.ScriptTarget.ESNext,
-			allowNonTsExtensions: true,
-			strict: true,
-			noImplicityAny: true,
 			moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-			noSemanticValidation: false,
-			noSyntaxValidation: false,
-		});
+		}
+
+		monaco.languages.typescript.typescriptDefaults.setCompilerOptions(monakoConfig);
 
 		const gameSdkUri = 'ts:filename/game-sdk.d.ts';
 
@@ -32,7 +45,7 @@ window.addEventListener('game-loaded', () => {
 
 		const editorElement = document.querySelector('#editor')
 		editor = monaco.editor.create(editorElement, {
-			value: '// Use `window.gameSDK` to interact with the game\n',
+			value: '// Use global `gameSDK` to interact with the game\n\n\n',
 			language: 'typescript',
 			theme: 'vs-dark',
 			minimap: { enabled: false },
@@ -72,9 +85,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	const save = document.querySelector('#save')
 	save.addEventListener('click', () => {
 		const code = editor.getValue();
-		setEditorVisible(false);
+		const jsCode = window.ts.transpile(code, tsConfig);
 
-		// Unsafe
-		eval(code)
+		setEditorVisible(false);
+		eval(jsCode)
 	})
 })

@@ -2,9 +2,7 @@ extends Timer
 
 @export var enemy_scene = preload("res://scenes/generated/enemy/scene.tscn")
 
-@onready var map_bounds = $"../../Map/StaticBody2D/CollisionPolygon2D"
-
-@export var max_enemies: int = 30
+@export var max_enemies: int = 300
 
 var current_enemies: int = 0
 
@@ -24,14 +22,10 @@ func spawn_enemy():
 	enemy.connect("tree_exiting", self._on_enemy_removed)
 
 func get_random_position() -> Vector2:
-	var rect_shape: PackedVector2Array = map_bounds.polygon
-	var top_left = rect_shape[5]
-	var bottom_right = rect_shape[3]
-	
 	var size = 14
 	
-	var rand_x = randf_range(top_left.x + size, bottom_right.x - size)
-	var rand_y = randf_range(top_left.y + size, bottom_right.y - size)
+	var rand_x = randf_range(size, Constants.width - size)
+	var rand_y = randf_range(size, Constants.height - size)
 
 	return Vector2(rand_x, rand_y)
 

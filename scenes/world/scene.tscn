@@ -277,7 +277,6 @@ unicode = 101
 events = [SubResource("InputEventKey_a1clk")]
 
 [node name="World" type="Node2D"]
-position = Vector2(656, 400)
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -295,7 +294,6 @@ script = ExtResource("14_2f0mr")
 y_sort_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Entities"]
-position = Vector2(0, -8)
 rotation = 0.000157734
 script = ExtResource("13_2mmmy")
 
@@ -306,7 +304,6 @@ sprite_frames = SubResource("SpriteFrames_vldui")
 animation = &"moving-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player"]
-position = Vector2(0.000946404, 6)
 shape = SubResource("CapsuleShape2D_np565")
 
 [node name="Enemy Spawner" type="Timer" parent="Entities"]

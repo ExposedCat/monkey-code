@@ -12,6 +12,10 @@ var direction_vectors = {
 	"right": Vector2(1, 0)
 }
 
+func _ready():
+	position.x = Constants.width / 2 + 5
+	position.y = Constants.height / 2 + 20
+
 func _physics_process(_delta):
 	velocity = Vector2()
 	

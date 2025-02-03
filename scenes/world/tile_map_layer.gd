@@ -1,8 +1,6 @@
 extends TileMapLayer
 
 func _draw() -> void:
-	position.x = -Constants.width / 2
-	position.y = -Constants.height / 2
 	draw_rect(
 		Rect2(Vector2.ZERO, Vector2(Constants.width, Constants.height)), 
 		"#3e8948",

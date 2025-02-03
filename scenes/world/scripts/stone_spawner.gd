@@ -4,7 +4,7 @@ extends Node
 
 @onready var map_bounds = $"../../Map/StaticBody2D/CollisionPolygon2D"
 
-var stone_number: int = 10
+var stone_number: int = 150
 
 func _ready() -> void:
 	for i in range(1, stone_number):
