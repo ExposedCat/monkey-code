@@ -18,10 +18,10 @@ class Enemy implements IEnemy {
 	}
 }
 
-function makeGameSdkEntry<T, N, M>(
+function makeGameSdkEntry<T, M>(
 	kind: string,
 	Instance: new (id: number) => T,
-): GameSdkEntry<N, M> {
+): GameSdkEntry<M> {
 	return {
 		on: (event, callback) => {
 			const listener = (event: CustomEvent<string>) => {
@@ -30,8 +30,8 @@ function makeGameSdkEntry<T, N, M>(
 				(callback as (i: T) => void)(instance);
 			};
 
-			godotBridge.on(`${kind}:${event}`, listener);
-			return () => godotBridge.off(`${kind}:${event}`, listener);
+			godotBridge.on(`${kind}:${event as string}`, listener);
+			return () => godotBridge.off(`${kind}:${event as string}`, listener);
 		},
 	};
 }

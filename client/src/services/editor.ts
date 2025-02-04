@@ -113,18 +113,18 @@ export function setupEditor() {
 				if (!code) {
 					alert("Failed to execute: no code provided");
 				} else {
-					const jsCode = await compileTs({
+					const { ok, data } = await compileTs({
 						code,
 						lib: gameSdkTypes,
 					});
 
-					if (!jsCode) {
-						alert("Failed to execute: code contains errors");
-					} else {
+					if (ok) {
 						setEditorVisible(false);
 						// FIXME: Sandbox this
 						// biome-ignore lint/security/noGlobalEval: Need by design
-						eval(jsCode);
+						eval(data);
+					} else {
+						alert(`Failed to execute: ${data}`);
 					}
 				}
 			});

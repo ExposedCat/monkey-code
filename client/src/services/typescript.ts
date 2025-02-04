@@ -5,26 +5,27 @@ declare global {
 }
 
 const MAIN_FILE = "main.in-mem.ts";
-const LIB_FILE = "lib.in-mem.d.ts";
+const LIB_FILE = "lib.in-mem.ts";
 
-export const commonTsConfig = {
+export const commonTsConfig: TS.CompilerOptions = {
 	allowNonTsExtensions: true,
 	strict: true,
 	noImplicityAny: true,
 	noSemanticValidation: false,
 	noSyntaxValidation: false,
+	lib: ["dom", "es6"],
 };
 
-const tsConfig = {
+const tsConfig: TS.CompilerOptions = {
 	...commonTsConfig,
-	target: ts.ScriptTarget.ESNext,
+	target: ts.ScriptTarget.Latest,
 	moduleResolution: ts.ModuleResolutionKind.NodeNext,
 };
 
 export async function compileTs({
 	code,
 	lib,
-}: { code: string; lib: string }): Promise<string | null> {
+}: { code: string; lib: string }): Promise<{ ok: boolean; data: string }> {
 	return new Promise((resolve) => {
 		const compilerHost = {
 			fileExists: () => true,
@@ -34,14 +35,17 @@ export async function compileTs({
 			getNewLine: () => "\n",
 			getSourceFile: (fileName: string) => {
 				if (fileName === MAIN_FILE) {
-					return ts.createSourceFile(fileName, code, ts.ScriptTarget.ES5, true);
-				}
-				if (fileName === LIB_FILE) {
-					return ts.createSourceFile(fileName, lib, ts.ScriptTarget.ES5, true);
+					return ts.createSourceFile(
+						fileName,
+						`${lib}\n\n${code}`,
+						ts.ScriptTarget.ES5,
+						true,
+					);
 				}
 				return undefined;
 			},
-			writeFile: (_fileName: string, data: string) => resolve(data),
+			writeFile: (_fileName: string, data: string) =>
+				resolve({ ok: true, data }),
 			readFile: () => code,
 			useCaseSensitiveFileNames: () => true,
 		};
@@ -52,7 +56,13 @@ export async function compileTs({
 		const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
 		if (semanticDiagnostics.length > 0 || syntacticDiagnostics.length > 0) {
-			return resolve(null);
+			return resolve({
+				ok: false,
+				data:
+					semanticDiagnostics[0]?.messageText.toString() ??
+					syntacticDiagnostics[0]?.messageText.toString() ??
+					"Unknown Error",
+			});
 		}
 
 		program.emit();

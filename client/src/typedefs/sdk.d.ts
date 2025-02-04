@@ -7,30 +7,26 @@ declare type IStone = {
 declare type IEnemy = {
 	id: number;
 	setFollowPlayer(follow: boolean): void;
-	attack(target: Stone): void;
+	attack(target: IStone): void;
 	giveMe(type: ItemType, amount: number): void;
 };
 
 declare type EnemyEventMap = {
-	spawned: (enemy: Enemy) => void;
-	clicked: (enemy: Enemy) => void;
+	spawned: (enemy: IEnemy) => void;
+	clicked: (enemy: IEnemy) => void;
 };
-declare type EnemyEventName = keyof EnemyEventMap;
 
 declare type StoneEventMap = {
-	clicked: (stone: Stone) => void;
+	clicked: (stone: IStone) => void;
 };
-declare type StoneEventName = keyof StoneEventMap;
 
-declare type GameSdkEntry<N, M> = {
-	on: <T extends N>(name: T, callback: M[T]) => void;
+declare type GameSdkEntry<M> = {
+	on: <T extends keyof M>(name: T, callback: M[T]) => void;
 };
 
 declare type GameSdk = {
-	enemy: GameSdkEntry<EnemyEventName, EnemyEventMap>;
-	stone: GameSdkEntry<StoneEventName, StoneEventMap>;
+	enemy: GameSdkEntry<EnemyEventMap>;
+	stone: GameSdkEntry<StoneEventMap>;
 };
 
-declare global {
-	const gameSdk: GameSdk;
-}
+declare const gameSdk: GameSdk;
