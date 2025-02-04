@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5qanarx1i8sw"]
 
-[ext_resource type="Texture2D" uid="uid://bsvslte6t6kcc" path="res://assets/ui/inventory_item_frame.png" id="1_4tsy7"]
+[ext_resource type="Texture2D" uid="uid://dm08vqj0oeejp" path="res://assets/ui/buttons/slot.svg" id="1_4sxj0"]
 
 [node name="InventoryItem" type="Node2D"]
 
@@ -18,18 +18,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Background" type="Sprite2D" parent="Control/Center"]
-position = Vector2(25, 25)
-texture = ExtResource("1_4tsy7")
+position = Vector2(25, 29)
+scale = Vector2(0.555556, 0.555556)
+texture = ExtResource("1_4sxj0")
 
 [node name="Item" type="Sprite2D" parent="Control/Center"]
-position = Vector2(25, 25)
+position = Vector2(25, 21)
 
 [node name="Center2" type="CenterContainer" parent="Control"]
 layout_mode = 2
-offset_left = 26.0
-offset_top = 25.0
-offset_right = 45.0
-offset_bottom = 48.0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 34.0
+offset_bottom = 58.0
 
 [node name="Amount" type="Label" parent="Control/Center2"]
 layout_mode = 2
