@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cajqkglqgsgek"]
+[gd_scene load_steps=7 format=3 uid="uid://cajqkglqgsgek"]
 
 [ext_resource type="Texture2D" uid="uid://c5taendc8auy8" path="res://assets/map/Cliff_Tile.png" id="1_je5i4"]
 [ext_resource type="Script" path="res://scenes/main/world/terrain.gd" id="2_bupiu"]
 [ext_resource type="Script" path="res://scenes/main/world/walls.gd" id="3_vr67h"]
+[ext_resource type="Script" path="res://scenes/map/clouds.gd" id="4_5vplk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlunu"]
 texture = ExtResource("1_je5i4")
@@ -37,3 +38,12 @@ script = ExtResource("2_bupiu")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
 script = ExtResource("3_vr67h")
+
+[node name="Clouds" type="Node2D" parent="."]
+z_index = 1
+z_as_relative = false
+script = ExtResource("4_5vplk")
+
+[node name="Corners" type="Node2D" parent="."]
+z_index = 2
+z_as_relative = false
