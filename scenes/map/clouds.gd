@@ -11,24 +11,26 @@ var vertical: Array[Sprite2D] = []
 var max_offset = 0
 
 var images = build_images([
-	"res://assets/map/cloud-1.png",
-	"res://assets/map/cloud-2.png",
-	"res://assets/map/cloud-3.png",
-	"res://assets/map/cloud-4.png",
-	"res://assets/map/cloud-5.png",
-	"res://assets/map/cloud-6.png",
+	load("res://assets/map/cloud-1.png"),
+	load("res://assets/map/cloud-2.png"),
+	load("res://assets/map/cloud-3.png"),
+	load("res://assets/map/cloud-4.png"),
+	load("res://assets/map/cloud-5.png"),
+	load("res://assets/map/cloud-6.png"),
 ])
 
-func build_images(paths: Array[String]) -> Array:
+func build_images(loaded_images: Array) -> Array:
 	var result = []
-	for path in paths:
-		var kinds = [Image.load_from_file(path), Image.load_from_file(path), Image.load_from_file(path)]
-		kinds[1].rotate_90(CLOCKWISE)
-		kinds[2].rotate_90(COUNTERCLOCKWISE)
-		result.append(
-			kinds.map(func (image): return ImageTexture.create_from_image(image))
-		)
-		var offset = kinds[0].get_height() / 2
+	for image in loaded_images:
+		var pack = []
+		for i in range(3):
+			var target = image
+			if i != 0:
+				target = target.duplicate()
+				target.rotate_90(CLOCKWISE if i == 1 else COUNTERCLOCKWISE)
+			pack.append(ImageTexture.create_from_image(target))
+		result.append(pack)
+		var offset = pack[0].get_height() / 2
 		if offset > max_offset:
 			max_offset = offset
 	return result
@@ -64,7 +66,6 @@ func create_cloud(offset: float, orientation: String) -> Array[float]:
 		var cloud = Sprite2D.new()
 		cloud.z_index = 1
 		cloud.centered = false
-		cloud.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		cloud.y_sort_enabled = false
 		cloud.texture = textures[0 if orientation == "horizontal" else 2 if end else 1]
 		
@@ -89,8 +90,8 @@ func create_cloud(offset: float, orientation: String) -> Array[float]:
 
 func _ready() -> void:
 	fix_corners()
-	var width = [-OFFSET / 2, Constants.width, "horizontal"]
-	var height = [-OFFSET / 2, Constants.height, "vertical"]
+	var width = [-OFFSET / 2.0, Constants.width, "horizontal"]
+	var height = [-OFFSET / 2.0, Constants.height, "vertical"]
 	while true:
 		var filled = 0
 		for dimension in [width, height]:
@@ -102,13 +103,13 @@ func _ready() -> void:
 		if filled == 2:
 			break
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for cloud in horizontal:
 		cloud.position.x += SPEED
 		if cloud.position.x > Constants.width:
-			cloud.position.x = -OFFSET / 2
+			cloud.position.x = -OFFSET / 2.0
 	for cloud in vertical:
 		cloud.position.y += SPEED
 		if cloud.position.y > Constants.height:
-			cloud.position.y = -OFFSET / 2
+			cloud.position.y = -OFFSET / 2.0
 		
