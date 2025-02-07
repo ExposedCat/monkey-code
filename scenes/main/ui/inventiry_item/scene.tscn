@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5qanarx1i8sw"]
 
-[ext_resource type="Texture2D" uid="uid://dm08vqj0oeejp" path="res://assets/ui/buttons/slot.svg" id="1_4sxj0"]
+[ext_resource type="Texture2D" uid="uid://dm08vqj0oeejp" path="res://dist/client/assets/buttons/slot.svg" id="1_4sxj0"]
 
 [node name="InventoryItem" type="Node2D"]
 

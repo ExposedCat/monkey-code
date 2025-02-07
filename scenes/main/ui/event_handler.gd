@@ -16,5 +16,5 @@ func _on_open_editor_pressed() -> void:
 
 func _on_pause_pressed() -> void:
 	var paused = toggle_pause()
-	$ColorRect.visible = paused
+	$"Pause Tint".visible = paused
 	$Pause.text = "Continue" if paused else "Pause"

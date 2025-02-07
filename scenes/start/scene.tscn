@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgmiikd2qijei"]
+
+[ext_resource type="Script" path="res://scenes/start/script.gd" id="1_dfnxi"]
+[ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://ui/main.theme" id="1_muulw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfnxi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -28.5
+offset_right = 44.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_muulw")
+text = "Monkey Code"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_muulw")
+text = "Start"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start"]

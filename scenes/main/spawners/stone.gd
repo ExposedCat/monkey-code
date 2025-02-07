@@ -2,8 +2,6 @@ extends Node
 
 @export var stone_scene = preload("res://scenes/resources/stone/scene.tscn")
 
-@onready var map_bounds = $"../../Map/StaticBody2D/CollisionPolygon2D"
-
 var stone_number: int = 150
 
 func _ready() -> void:
@@ -17,13 +15,12 @@ func spawn_stone() -> void:
 	get_parent().add_child.call_deferred(stone)
 
 func get_random_position() -> Vector2:
-	var rect_shape: PackedVector2Array = map_bounds.polygon
-	var top_left = rect_shape[5]
-	var bottom_right = rect_shape[3]
-	
 	var size = 14
+	var border_offset = 20
 	
-	var rand_x = randf_range(top_left.x + size, bottom_right.x - size)
-	var rand_y = randf_range(top_left.y + size, bottom_right.y - size)
-
-	return Vector2(rand_x, rand_y)
+	var start_x = border_offset + size
+	var start_y = start_x
+	var end_x = Constants.width - border_offset - size
+	var end_y = Constants.height - border_offset - size
+	
+	return Vector2(randf_range(start_x, end_x), randf_range(start_y, end_y))
