@@ -23,6 +23,10 @@ type Editor = {
 let editor: Editor | null = null;
 
 function setEditorVisible(visible: boolean) {
+	if (!visible) {
+		console.log("Toggle pause");
+		godotBridge.dispatch("system:pause", []);
+	}
 	const canvas = document.querySelector<HTMLCanvasElement>("#canvas");
 	const envelope = document.querySelector<HTMLDivElement>("#envelope");
 	if (canvas && envelope) {
@@ -107,7 +111,8 @@ export function setupEditor() {
 
 	window.addEventListener("DOMContentLoaded", () => {
 		const save = document.querySelector<HTMLInputElement>("#save");
-		if (save) {
+		const close = document.querySelector<HTMLInputElement>("#close");
+		if (save && close) {
 			save.addEventListener("click", async () => {
 				const code = editor?.getValue();
 				if (!code) {
@@ -127,6 +132,9 @@ export function setupEditor() {
 						alert(`Failed to execute: ${data}`);
 					}
 				}
+			});
+			close.addEventListener("click", async () => {
+				setEditorVisible(false);
 			});
 		}
 	});

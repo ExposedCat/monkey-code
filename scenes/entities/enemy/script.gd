@@ -42,11 +42,14 @@ func _enter_tree() -> void:
 	})
 
 func _physics_process(_delta: float) -> void:
+	if target != null and not is_instance_valid(target):
+		target = null
+	
 	var stand = func():
 		$AnimatedSprite2D.play("standing")
 		velocity = Vector2.ZERO
 
-	if following or target:
+	if following or target != null:
 		if target:
 			following = false
 		navigation.target_position = player.global_position if following else target.global_position

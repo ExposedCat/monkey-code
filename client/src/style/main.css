@@ -46,6 +46,12 @@ body {
 	right: 20px;
 }
 
+#close {
+	position: absolute;
+	bottom: 10px;
+	right: 140px;
+}
+
 input[type="button"] {
 	cursor: pointer;
 	border: none;
