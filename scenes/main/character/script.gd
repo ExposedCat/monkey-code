@@ -15,6 +15,8 @@ var direction_vectors = {
 func _ready():
 	position.x = float(Constants.width) / 2 + 5
 	position.y = float(Constants.height) / 2 + 20
+	$Camera2D.limit_right = Constants.width
+	$Camera2D.limit_bottom = Constants.height
 
 func _physics_process(_delta):
 	velocity = Vector2()

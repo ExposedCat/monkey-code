@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://0se83qcwni2b"]
+[gd_scene load_steps=63 format=3 uid="uid://0se83qcwni2b"]
 
 [ext_resource type="Script" path="res://scenes/main/script.gd" id="1_1o43a"]
 [ext_resource type="Script" path="res://scenes/main/character/script.gd" id="13_2mmmy"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://yawe2gqnf8q3" path="res://assets/entities/character/tile023.png" id="55_yi7co"]
 [ext_resource type="Texture2D" uid="uid://wjt8n4hr73q7" path="res://assets/entities/character/tile036.png" id="56_lscss"]
 [ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://ui/main.theme" id="56_ojatx"]
+[ext_resource type="Script" path="res://scenes/main/day_time.gd" id="56_piciw"]
 [ext_resource type="Texture2D" uid="uid://bc0nkj0lkbua6" path="res://assets/entities/character/tile037.png" id="57_ofjrb"]
 [ext_resource type="Texture2D" uid="uid://badcgpddap7wc" path="res://assets/entities/character/tile038.png" id="58_ql5ub"]
 [ext_resource type="Texture2D" uid="uid://dl12hcwx3ciav" path="res://assets/entities/character/tile039.png" id="59_2nobr"]
@@ -273,6 +274,8 @@ rotation = 0.000157734
 script = ExtResource("13_2mmmy")
 
 [node name="Camera2D" type="Camera2D" parent="Entities/Player"]
+limit_left = 0
+limit_top = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Entities/Player"]
 sprite_frames = SubResource("SpriteFrames_vldui")
@@ -286,7 +289,7 @@ wait_time = 3.0
 autostart = true
 script = ExtResource("62_q5xkf")
 
-[node name="Stone Spawner" type="Node" parent="Entities"]
+[node name="Spawner" type="Node" parent="Entities"]
 script = ExtResource("63_j2fgb")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -347,6 +350,11 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("56_ojatx")
 shortcut = SubResource("Shortcut_7togc")
 text = "Pause"
+
+[node name="Day Time" type="Timer" parent="."]
+script = ExtResource("56_piciw")
+
+[node name="Light" type="CanvasModulate" parent="Day Time"]
 
 [connection signal="pressed" from="UI/Open Editor" to="UI" method="_on_open_editor_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]

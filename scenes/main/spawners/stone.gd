@@ -1,26 +1,34 @@
 extends Node
 
-@export var stone_scene = preload("res://scenes/resources/stone/scene.tscn")
+@export var stone_scene = preload("res://scenes/items/stone/scene.tscn")
+@export var light_scene = preload("res://scenes/items/light/scene.tscn")
 
-var stone_number: int = 150
+var scenes = [
+	{"scene": stone_scene, "amount": 250, "min_distance": 5, "positions": []},
+	{"scene": light_scene, "amount": 20, "min_distance": 300, "positions": []},
+]
 
 func _ready() -> void:
-	for i in range(1, stone_number):
-		spawn_stone()
+	for scene in scenes:
+		for i in range(1, scene["amount"]):
+			spawn(scene)
 
-func spawn_stone() -> void:
-	var stone = stone_scene.instantiate()
-	stone.position = get_random_position()
+func spawn(scene) -> void:
+	var item = scene["scene"].instantiate()
+	item.position = get_random_position(scene)
+	get_parent().add_child.call_deferred(item)
 
-	get_parent().add_child.call_deferred(stone)
-
-func get_random_position() -> Vector2:
-	var size = 14
+func get_random_position(scene) -> Vector2:
 	var border_offset = 20
 	
-	var start_x = border_offset + size
+	var start_x = border_offset
 	var start_y = start_x
-	var end_x = Constants.width - border_offset - size
-	var end_y = Constants.height - border_offset - size
+	var end_x = Constants.width - border_offset
+	var end_y = Constants.height - border_offset
 	
-	return Vector2(randf_range(start_x, end_x), randf_range(start_y, end_y))
+	for i in range(0, 1001):
+		var coords = Vector2(randf_range(start_x, end_x), randf_range(start_y, end_y))
+		if not scene["positions"].any(func (position): return position.distance_to(coords) < scene["min_distance"]) or i == 1000:
+			scene["positions"].append(coords)
+			return coords
+	return Vector2.ZERO

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://ckdslrkanadyi"]
 
-[ext_resource type="Script" path="res://scenes/resources/stone/script.gd" id="1_k6hno"]
+[ext_resource type="Script" path="res://scenes/items/stone/script.gd" id="1_k6hno"]
 [ext_resource type="Shader" path="res://effects/hit.gdshader" id="2_14e6k"]
 [ext_resource type="Texture2D" uid="uid://budqjl7eivp2x" path="res://assets/resources/stone/stone.png" id="2_t5nqt"]
-[ext_resource type="Script" path="res://scenes/resources/stone/event_handler.gd" id="3_6fg6y"]
-[ext_resource type="Script" path="res://scenes/resources/stone/sprite.gd" id="4_ldkg2"]
+[ext_resource type="Script" path="res://scenes/items/stone/event_handler.gd" id="3_6fg6y"]
+[ext_resource type="Script" path="res://scenes/items/stone/sprite.gd" id="4_ldkg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5wqk"]
 size = Vector2(15, 14.75)
@@ -18,22 +18,6 @@ shader_parameter/b = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oo16m"]
 size = Vector2(30, 32)
-
-[sub_resource type="Animation" id="Animation_nj00v"]
-resource_name = "hit"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D/Sprite2D:material:shader_parameter/hit_opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.5, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_k755n"]
 length = 0.001
@@ -64,6 +48,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_nj00v"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/Sprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3cd5"]

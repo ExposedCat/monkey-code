@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Monkey Code"
+config/name="M.O.N.K.E.Y"
+config/description="M.O.N.K.E.Y - Making Own Noble Kingdom Effortlessly Yielding - a programmable fantasy world of yours"
 run/main_scene="res://scenes/start/scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -64,4 +65,3 @@ Hit={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(1, 1, 1, 1)

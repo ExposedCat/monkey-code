@@ -34,28 +34,7 @@ func build_images(loaded_images: Array) -> Array:
 		if offset > max_offset:
 			max_offset = offset
 	return result
-	
-func fix_corners():
-	var corners = [
-		Vector2(-max_offset - CORNER_FIX_SIZE, -max_offset),
-		Vector2(-max_offset, -max_offset - CORNER_FIX_SIZE),
-		
-		Vector2(Constants.width + max_offset - CORNER_FIX_OFFSET, -max_offset),
-		Vector2(Constants.width + max_offset - CORNER_FIX_SIZE, -CORNER_FIX_SIZE - max_offset),
-		
-		Vector2(Constants.width + max_offset - CORNER_FIX_OFFSET, Constants.height + max_offset - CORNER_FIX_SIZE),
-		Vector2(Constants.width + max_offset - CORNER_FIX_SIZE,	Constants.height + max_offset - CORNER_FIX_OFFSET),
-		
-		Vector2(-max_offset - CORNER_FIX_SIZE, Constants.height + max_offset - CORNER_FIX_SIZE),
-		Vector2(-max_offset, Constants.height + max_offset - CORNER_FIX_OFFSET),
-	]
-	for coords in corners:
-		var rect = ColorRect.new()
-		rect.z_index = 2
-		rect.color = Color.WHITE
-		rect.position = coords
-		rect.size = Vector2(CORNER_FIX_SIZE, CORNER_FIX_SIZE)
-		$"../Corners".add_child(rect)
+
 
 func create_cloud(offset: float, orientation: String) -> Array[float]:
 	var textures: Array = images.pick_random()
@@ -71,11 +50,13 @@ func create_cloud(offset: float, orientation: String) -> Array[float]:
 		
 		if orientation == "horizontal":
 			cloud.position = Vector2(offset + shift, Constants.height if end else 0)
-			cloud.offset = Vector2(0, -max_offset)
+			if end:
+				cloud.offset = Vector2(0, -max_offset)
 			horizontal.append(cloud)
 		else:
 			cloud.position = Vector2(Constants.width if end else 0, offset + shift)
-			cloud.offset = Vector2(-max_offset, 0)
+			if end:
+				cloud.offset = Vector2(-max_offset, 0)
 			vertical.append(cloud)
 		
 		if end or orientation != "horizontal":
@@ -89,7 +70,6 @@ func create_cloud(offset: float, orientation: String) -> Array[float]:
 	return [width, shift]
 
 func _ready() -> void:
-	fix_corners()
 	var width = [-OFFSET / 2.0, Constants.width, "horizontal"]
 	var height = [-OFFSET / 2.0, Constants.height, "vertical"]
 	while true:

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxglpohcv51or"]
+
+[ext_resource type="Texture2D" uid="uid://mc563shir7dm" path="res://assets/map/light.png" id="1_b2ktj"]
+[ext_resource type="Script" path="res://scenes/items/light/script.gd" id="1_b375d"]
+[ext_resource type="Texture2D" uid="uid://phsqcfqtuwky" path="res://assets/map/light-source.png" id="2_4txlb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5eu5e"]
+radius = 9.0
+height = 18.0
+
+[node name="Light" type="Node2D"]
+script = ExtResource("1_b375d")
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Bottom" type="PointLight2D" parent="Lights"]
+position = Vector2(-1, 0)
+scale = Vector2(1, 0.866667)
+blend_mode = 2
+range_z_min = -4096
+shadow_color = Color(0, 0, 0, 0.152941)
+texture = ExtResource("2_4txlb")
+
+[node name="Upper" type="PointLight2D" parent="Lights"]
+position = Vector2(-1, -57)
+scale = Vector2(0.109375, 0.09375)
+energy = 0.5
+shadow_color = Color(0, 0, 0, 0.152941)
+texture = ExtResource("2_4txlb")
+texture_scale = 0.25
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -31)
+texture = ExtResource("1_b2ktj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_5eu5e")

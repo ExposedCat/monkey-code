@@ -4,7 +4,7 @@ var editor_opened = false
 
 
 var toggle_pause__js = JavaScriptBridge.create_callback(toggle_pause)
-func toggle_pause(args = null):
+func toggle_pause(_args = null):
 	var tree = get_tree()
 	tree.paused = not tree.paused
 	if not tree.paused:
