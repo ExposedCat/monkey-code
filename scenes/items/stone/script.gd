@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func hit(inventory: InventoryManager.Inventory):
 	if not is_invincible:
+		$"../Hit".play()
 		is_invincible = true
 		inventory.add_item("stone", 1)
 		hp -= 1

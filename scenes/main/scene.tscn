@@ -1,6 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://0se83qcwni2b"]
+[gd_scene load_steps=70 format=3 uid="uid://0se83qcwni2b"]
 
 [ext_resource type="Script" path="res://scenes/main/script.gd" id="1_1o43a"]
+[ext_resource type="AudioStream" uid="uid://cpuujlsgdfp1x" path="res://assets/audio/midnight-forest.mp3" id="2_wgq16"]
 [ext_resource type="Script" path="res://scenes/main/character/script.gd" id="13_2mmmy"]
 [ext_resource type="Texture2D" uid="uid://cqxtmm0jcwptu" path="res://assets/entities/character/tile024.png" id="14_b87tt"]
 [ext_resource type="Texture2D" uid="uid://djy4uw2pde34l" path="res://assets/entities/character/tile025.png" id="15_o8lp6"]
@@ -42,7 +43,10 @@
 [ext_resource type="Texture2D" uid="uid://b73k8lab558mn" path="res://assets/entities/character/tile019.png" id="51_p4m7i"]
 [ext_resource type="Texture2D" uid="uid://b42b44se8xggv" path="res://assets/entities/character/tile020.png" id="52_w8tcl"]
 [ext_resource type="Texture2D" uid="uid://cwi4kydyh5bx5" path="res://assets/entities/character/tile021.png" id="53_4ov4l"]
+[ext_resource type="Texture2D" uid="uid://bl1gudupobw06" path="res://assets/ui/preview/builder.png" id="54_fnis3"]
+[ext_resource type="Script" path="res://scenes/main/menu.gd" id="54_mn0gx"]
 [ext_resource type="Texture2D" uid="uid://pxxcoa3rg1ok" path="res://assets/entities/character/tile022.png" id="54_udok1"]
+[ext_resource type="Script" path="res://scenes/main/build-preview.gd" id="55_831b0"]
 [ext_resource type="Texture2D" uid="uid://yawe2gqnf8q3" path="res://assets/entities/character/tile023.png" id="55_yi7co"]
 [ext_resource type="Texture2D" uid="uid://wjt8n4hr73q7" path="res://assets/entities/character/tile036.png" id="56_lscss"]
 [ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://ui/main.theme" id="56_ojatx"]
@@ -246,6 +250,13 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np565"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_1ctdm"]
+device = -1
+keycode = 4194306
+
+[sub_resource type="Shortcut" id="Shortcut_awsvo"]
+events = [SubResource("InputEventKey_1ctdm")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_yap2i"]
 device = -1
 keycode = 69
@@ -262,8 +273,16 @@ unicode = 112
 [sub_resource type="Shortcut" id="Shortcut_7togc"]
 events = [SubResource("InputEventKey_gdcxv")]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjas8"]
+size = Vector2(30, 28)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_1o43a")
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wgq16")
+autoplay = true
+parameters/looping = true
 
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -293,7 +312,35 @@ script = ExtResource("62_q5xkf")
 script = ExtResource("63_j2fgb")
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 script = ExtResource("63_aasgi")
+
+[node name="Inventory" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -63.0
+offset_right = -576.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("65_ybih7")
+
+[node name="Build" type="Button" parent="UI"]
+process_mode = 3
+custom_minimum_size = Vector2(130, 55.714)
+offset_left = 1012.0
+offset_top = 76.0
+offset_right = 1142.0
+offset_bottom = 131.714
+mouse_default_cursor_shape = 2
+theme = ExtResource("56_ojatx")
+shortcut = SubResource("Shortcut_awsvo")
+text = "Build"
 
 [node name="Open Editor" type="Button" parent="UI"]
 process_mode = 3
@@ -311,30 +358,6 @@ theme = ExtResource("56_ojatx")
 shortcut = SubResource("Shortcut_aav71")
 text = "Open Editor"
 
-[node name="Inventory" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -63.0
-offset_right = -576.0
-offset_bottom = -63.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("65_ybih7")
-
-[node name="Pause Tint" type="ColorRect" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.596078)
-
 [node name="Pause" type="Button" parent="UI"]
 process_mode = 3
 anchors_preset = 1
@@ -351,10 +374,55 @@ theme = ExtResource("56_ojatx")
 shortcut = SubResource("Shortcut_7togc")
 text = "Pause"
 
-[node name="Day Time" type="Timer" parent="."]
+[node name="Pause Tint" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.596078)
+
+[node name="Builder" type="Node" parent="."]
+
+[node name="Menu" type="CanvasLayer" parent="Builder"]
+layer = 3
+visible = false
+script = ExtResource("54_mn0gx")
+
+[node name="CenterContainer" type="CenterContainer" parent="Builder/Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Stone" type="Button" parent="Builder/Menu/CenterContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("56_ojatx")
+text = "Stone"
+
+[node name="Preview" type="Sprite2D" parent="Builder"]
+visible = false
+texture = ExtResource("54_fnis3")
+script = ExtResource("55_831b0")
+
+[node name="Area2D" type="Area2D" parent="Builder/Preview"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Builder/Preview/Area2D"]
+shape = SubResource("RectangleShape2D_sjas8")
+
+[node name="Day Time" type="Node" parent="."]
 script = ExtResource("56_piciw")
 
 [node name="Light" type="CanvasModulate" parent="Day Time"]
 
-[connection signal="pressed" from="UI/Open Editor" to="UI" method="_on_open_editor_pressed"]
+[connection signal="pressed" from="UI/Build" to="UI" method="_on_build_pressed"]
+[connection signal="pressed" from="UI/Open Editor" to="UI" method="_on_editor_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]
+[connection signal="pressed" from="Builder/Menu/CenterContainer/Stone" to="Builder/Menu" method="on_select_stone"]
+[connection signal="input_event" from="Builder/Preview/Area2D" to="Builder/Preview" method="_on_area_2d_input_event"]

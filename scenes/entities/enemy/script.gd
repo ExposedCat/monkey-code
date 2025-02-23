@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D
 
 @export var speed = 50
-@export var following = false
+@export var following = true
 @export var target: StaticBody2D = null
 
 var inventory = InventoryManager.Inventory.new()
@@ -68,3 +68,8 @@ func _physics_process(_delta: float) -> void:
 			stand.call()
 	else:
 		stand.call()
+
+
+func _on_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "moving":
+		$"../Jump".play()

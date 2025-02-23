@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8upr3a35a3b1"]
+[gd_scene load_steps=25 format=3 uid="uid://c8upr3a35a3b1"]
 
+[ext_resource type="AudioStream" uid="uid://253v5q57hvkb" path="res://assets/audio/slime.mp3" id="1_6oxwu"]
 [ext_resource type="Script" path="res://scenes/entities/enemy/script.gd" id="1_vbt68"]
 [ext_resource type="Texture2D" uid="uid://cijxlpxr0fx0v" path="res://assets/entities/slime/slime.png" id="2_e8a2g"]
 [ext_resource type="Script" path="res://scenes/entities/enemy/event_handler.gd" id="3_in2nq"]
@@ -138,6 +139,11 @@ size = Vector2(25, 22)
 
 [node name="EnemySpawner" type="Node2D"]
 
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_6oxwu")
+volume_db = -30.0
+max_distance = 1000.0
+
 [node name="Character" type="CharacterBody2D" parent="."]
 script = ExtResource("1_vbt68")
 
@@ -164,3 +170,5 @@ script = ExtResource("3_in2nq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Area2D"]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_ofhxn")
+
+[connection signal="animation_looped" from="Character/AnimatedSprite2D" to="Character" method="_on_animation_finished"]
