@@ -1,12 +1,5 @@
 extends TileMapLayer
 
-func _draw() -> void:
-	draw_rect(
-		Rect2(Vector2.ZERO, Vector2(Constants.width, Constants.height)), 
-		"#3e8948",
-		true
-	)
-
 func _ready() -> void:
 	var total_tiles = int(float(Constants.width * Constants.height) / rendering_quadrant_size)
 	var total_grass = total_tiles * 0.01

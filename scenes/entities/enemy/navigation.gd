@@ -1,6 +1,5 @@
 extends NavigationRegion2D
 
-
 func _ready() -> void:
 	var width = Constants.width
 	var height = Constants.height

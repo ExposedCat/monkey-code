@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cajqkglqgsgek"]
+[gd_scene load_steps=8 format=3 uid="uid://cajqkglqgsgek"]
 
+[ext_resource type="Script" path="res://scenes/main/background.gd" id="1_dk2bp"]
 [ext_resource type="Texture2D" uid="uid://c5taendc8auy8" path="res://assets/map/Cliff_Tile.png" id="1_je5i4"]
 [ext_resource type="Script" path="res://scenes/main/world/terrain.gd" id="2_bupiu"]
 [ext_resource type="Script" path="res://scenes/main/world/walls.gd" id="3_vr67h"]
@@ -28,6 +29,18 @@ texture = ExtResource("1_je5i4")
 sources/0 = SubResource("TileSetAtlasSource_vlunu")
 
 [node name="Map" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+mouse_filter = 2
+color = Color(0.243137, 0.537255, 0.282353, 1)
+script = ExtResource("1_dk2bp")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_6srod")

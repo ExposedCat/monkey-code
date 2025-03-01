@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckdslrkanadyi"]
+[gd_scene load_steps=13 format=3 uid="uid://ckdslrkanadyi"]
 
 [ext_resource type="Script" path="res://scenes/items/stone/script.gd" id="1_k6hno"]
-[ext_resource type="AudioStream" uid="uid://515ki3eyyb18" path="res://assets/audio/hit-rock.mp3" id="1_nns2f"]
 [ext_resource type="Shader" path="res://effects/hit.gdshader" id="2_14e6k"]
 [ext_resource type="Texture2D" uid="uid://budqjl7eivp2x" path="res://assets/resources/stone/stone.png" id="2_t5nqt"]
 [ext_resource type="Script" path="res://scenes/items/stone/event_handler.gd" id="3_6fg6y"]
@@ -77,7 +76,6 @@ _data = {
 [node name="Stone" type="Node2D"]
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_nns2f")
 volume_db = -10.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

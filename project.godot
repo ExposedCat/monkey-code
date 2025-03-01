@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Bridge="*res://global/bridge.gd"
 Constants="*res://global/constants.gd"
 InventoryManager="*res://global/inventory_manager.gd"
+DayNight="*res://global/day_night.gd"
 
 [display]
 
@@ -65,3 +66,7 @@ Hit={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/light_projectors/filter=2
+limits/opengl/max_renderable_lights=128
+limits/opengl/max_lights_per_object=128
+lightmapping/bake_performance/max_rays_per_pass=128

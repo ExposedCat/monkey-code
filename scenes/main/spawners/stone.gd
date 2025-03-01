@@ -5,7 +5,7 @@ extends Node
 
 var scenes = [
 	{"scene": stone_scene, "amount": 250, "min_distance": 5, "positions": []},
-	{"scene": light_scene, "amount": 20, "min_distance": 300, "positions": []},
+	{"scene": light_scene, "amount": 50, "min_distance": 100, "positions": []},
 ]
 
 func _ready() -> void:

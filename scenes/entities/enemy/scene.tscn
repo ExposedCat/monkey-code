@@ -141,8 +141,10 @@ size = Vector2(25, 22)
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_6oxwu")
-volume_db = -30.0
+volume_db = -40.0
+pitch_scale = 0.36
 max_distance = 1000.0
+parameters/looping = true
 
 [node name="Character" type="CharacterBody2D" parent="."]
 script = ExtResource("1_vbt68")
@@ -152,7 +154,7 @@ position = Vector2(-0.592602, -3.83334)
 scale = Vector2(0.62037, 0.62037)
 sprite_frames = SubResource("SpriteFrames_4yqey")
 animation = &"standing"
-frame_progress = 0.00939911
+frame_progress = 0.514177
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
 position = Vector2(-0.0370026, -0.33334)

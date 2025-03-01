@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crwrakasj3s6r"]
 
 [ext_resource type="Script" path="res://scenes/game-over/script.gd" id="1_kmd27"]
-[ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://ui/main.theme" id="1_naos1"]
+[ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://assets/ui/buttons/themes/main.theme" id="1_naos1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

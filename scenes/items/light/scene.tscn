@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxglpohcv51or"]
+[gd_scene load_steps=7 format=3 uid="uid://cxglpohcv51or"]
 
 [ext_resource type="Texture2D" uid="uid://mc563shir7dm" path="res://assets/map/light.png" id="1_b2ktj"]
 [ext_resource type="Script" path="res://scenes/items/light/script.gd" id="1_b375d"]
-[ext_resource type="Texture2D" uid="uid://phsqcfqtuwky" path="res://assets/map/light-source.png" id="2_4txlb"]
+[ext_resource type="Shader" path="res://scenes/items/light/light.gdshader" id="3_k0dyt"]
+[ext_resource type="Script" path="res://scenes/items/light/bottom_2.gd" id="4_7vurj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_edqrq"]
+shader = ExtResource("3_k0dyt")
+shader_parameter/alpha = 0.0
+shader_parameter/light_intensity = 0.8
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.05
+shader_parameter/fade_width = 0.4
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5eu5e"]
 radius = 9.0
@@ -11,23 +20,17 @@ height = 18.0
 [node name="Light" type="Node2D"]
 script = ExtResource("1_b375d")
 
-[node name="Lights" type="Node2D" parent="."]
-
-[node name="Bottom" type="PointLight2D" parent="Lights"]
-position = Vector2(-1, 0)
-scale = Vector2(1, 0.866667)
-blend_mode = 2
-range_z_min = -4096
-shadow_color = Color(0, 0, 0, 0.152941)
-texture = ExtResource("2_4txlb")
-
-[node name="Upper" type="PointLight2D" parent="Lights"]
-position = Vector2(-1, -57)
-scale = Vector2(0.109375, 0.09375)
-energy = 0.5
-shadow_color = Color(0, 0, 0, 0.152941)
-texture = ExtResource("2_4txlb")
-texture_scale = 0.25
+[node name="Light" type="ColorRect" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_edqrq")
+offset_left = -247.0
+offset_top = -223.0
+offset_right = -62.0
+offset_bottom = -39.0
+scale = Vector2(2.67188, 2.42969)
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_7vurj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

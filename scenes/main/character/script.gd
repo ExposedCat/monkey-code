@@ -1,9 +1,15 @@
 extends CharacterBody2D
 
+@onready var camera = $Camera2D
+@onready var sprite = $AnimatedSprite2D
+
 @export var speed: float = 250.0
+@export var hit_cooldown: float = 500.0
 @export var hit_range: float = 50.0
-@export var action = 'moving';
-@export var last_direction = 'down';
+
+var action = "standing";
+var last_direction = "down";
+var last_hit = 0;
 
 var direction_vectors = {
 	"up": Vector2(0, -1),
@@ -15,10 +21,12 @@ var direction_vectors = {
 func _ready():
 	position.x = float(Constants.width) / 2 + 5
 	position.y = float(Constants.height) / 2 + 20
-	$Camera2D.limit_right = Constants.width
-	$Camera2D.limit_bottom = Constants.height
+	camera.limit_right = Constants.width
+	camera.limit_bottom = Constants.height
 
 func _physics_process(_delta):
+	if action == "hit":
+		return
 	velocity = Vector2()
 	
 	if Input.is_action_pressed("Down"):
@@ -34,13 +42,17 @@ func _physics_process(_delta):
 		last_direction = "left";
 		velocity.x = -1
 		
-	if Input.is_action_just_pressed("Hit"):
+	action = "standing" if velocity == Vector2.ZERO else "moving";
+	
+	if Input.is_action_just_pressed("Hit") and Time.get_ticks_msec() - last_hit >= hit_cooldown:
+		last_hit = Time.get_ticks_msec()
+		velocity = Vector2.ZERO
+		action = "hit"
 		var nearest = get_nearest_hittable()
 		if nearest[0] != null and nearest[1] <= hit_range:
-			nearest[0].hit(InventoryManager.player)
+			nearest[0].interact(InventoryManager.player)
 		
-	action = "standing" if velocity == Vector2.ZERO else "moving";
-	$AnimatedSprite2D.play("%s-%s" % [action, last_direction]);
+	sprite.play("%s-%s" % [action, last_direction]);
 
 	if velocity != Vector2.ZERO:
 		velocity = velocity.normalized()
@@ -64,3 +76,7 @@ func get_nearest_hittable():
 
 	return [nearest_hittable, nearest_distance]
 	
+
+func _on_animation_finished() -> void:
+	if sprite.animation.begins_with("hit"):
+		action = "standing"

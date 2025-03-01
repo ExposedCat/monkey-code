@@ -1,7 +1,11 @@
-[gd_scene load_steps=70 format=3 uid="uid://0se83qcwni2b"]
+[gd_scene load_steps=85 format=3 uid="uid://0se83qcwni2b"]
 
 [ext_resource type="Script" path="res://scenes/main/script.gd" id="1_1o43a"]
 [ext_resource type="AudioStream" uid="uid://cpuujlsgdfp1x" path="res://assets/audio/midnight-forest.mp3" id="2_wgq16"]
+[ext_resource type="Texture2D" uid="uid://biilrgkk3eeim" path="res://assets/entities/character/hit-down.png" id="4_kac1o"]
+[ext_resource type="Texture2D" uid="uid://bhldymg5peoue" path="res://assets/entities/character/hit-right.png" id="4_p33t0"]
+[ext_resource type="Texture2D" uid="uid://kn7x7hdjg00k" path="res://assets/entities/character/hit-left.png" id="5_vmbvi"]
+[ext_resource type="Texture2D" uid="uid://w6yt3qvpx7ub" path="res://assets/entities/character/hit-top.png" id="7_72bq8"]
 [ext_resource type="Script" path="res://scenes/main/character/script.gd" id="13_2mmmy"]
 [ext_resource type="Texture2D" uid="uid://cqxtmm0jcwptu" path="res://assets/entities/character/tile024.png" id="14_b87tt"]
 [ext_resource type="Texture2D" uid="uid://djy4uw2pde34l" path="res://assets/entities/character/tile025.png" id="15_o8lp6"]
@@ -49,7 +53,7 @@
 [ext_resource type="Script" path="res://scenes/main/build-preview.gd" id="55_831b0"]
 [ext_resource type="Texture2D" uid="uid://yawe2gqnf8q3" path="res://assets/entities/character/tile023.png" id="55_yi7co"]
 [ext_resource type="Texture2D" uid="uid://wjt8n4hr73q7" path="res://assets/entities/character/tile036.png" id="56_lscss"]
-[ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://ui/main.theme" id="56_ojatx"]
+[ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://assets/ui/buttons/themes/main.theme" id="56_ojatx"]
 [ext_resource type="Script" path="res://scenes/main/day_time.gd" id="56_piciw"]
 [ext_resource type="Texture2D" uid="uid://bc0nkj0lkbua6" path="res://assets/entities/character/tile037.png" id="57_ofjrb"]
 [ext_resource type="Texture2D" uid="uid://badcgpddap7wc" path="res://assets/entities/character/tile038.png" id="58_ql5ub"]
@@ -57,12 +61,91 @@
 [ext_resource type="Texture2D" uid="uid://bxe631qdp62ji" path="res://assets/entities/character/tile040.png" id="60_yiccd"]
 [ext_resource type="Texture2D" uid="uid://dn1uu1pxce3u7" path="res://assets/entities/character/tile041.png" id="61_8c285"]
 [ext_resource type="Script" path="res://scenes/main/spawners/enemy.gd" id="62_q5xkf"]
+[ext_resource type="Theme" uid="uid://cou7o5jtlpv3t" path="res://assets/ui/buttons/themes/square.theme" id="62_vbyxq"]
 [ext_resource type="Script" path="res://scenes/main/ui/event_handler.gd" id="63_aasgi"]
+[ext_resource type="Texture2D" uid="uid://bp51r8yeh3ytc" path="res://assets/ui/icons/stone.png" id="63_iyw6r"]
 [ext_resource type="Script" path="res://scenes/main/spawners/stone.gd" id="63_j2fgb"]
+[ext_resource type="Texture2D" uid="uid://bjlvhu7bimmfg" path="res://assets/buildables/furnance-open.png" id="64_tb50t"]
 [ext_resource type="Script" path="res://scenes/main/ui/inventiry_item/script.gd" id="65_ybih7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4yn2"]
+atlas = ExtResource("4_kac1o")
+region = Rect2(0, 0, 30, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctnm4"]
+atlas = ExtResource("4_kac1o")
+region = Rect2(30, 0, 30, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btvw3"]
+atlas = ExtResource("5_vmbvi")
+region = Rect2(62, 0, 62, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cxxo"]
+atlas = ExtResource("5_vmbvi")
+region = Rect2(0, 0, 62, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uoap"]
+atlas = ExtResource("4_p33t0")
+region = Rect2(0, 0, 62, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clrty"]
+atlas = ExtResource("4_p33t0")
+region = Rect2(62, 0, 62, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia6m5"]
+atlas = ExtResource("7_72bq8")
+region = Rect2(0, 0, 34, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m587"]
+atlas = ExtResource("7_72bq8")
+region = Rect2(34, 0, 34, 75)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vldui"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4yn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctnm4")
+}],
+"loop": false,
+"name": &"hit-down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btvw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cxxo")
+}],
+"loop": false,
+"name": &"hit-left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uoap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clrty")
+}],
+"loop": false,
+"name": &"hit-right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia6m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m587")
+}],
+"loop": false,
+"name": &"hit-up",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("14_b87tt")
@@ -250,6 +333,9 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np565"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjas8"]
+size = Vector2(30, 28)
+
 [sub_resource type="InputEventKey" id="InputEventKey_1ctdm"]
 device = -1
 keycode = 4194306
@@ -273,14 +359,13 @@ unicode = 112
 [sub_resource type="Shortcut" id="Shortcut_7togc"]
 events = [SubResource("InputEventKey_gdcxv")]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjas8"]
-size = Vector2(30, 28)
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_1o43a")
 
 [node name="Ambient" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("2_wgq16")
+volume_db = -8.0
 autoplay = true
 parameters/looping = true
 
@@ -298,7 +383,9 @@ limit_top = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Entities/Player"]
 sprite_frames = SubResource("SpriteFrames_vldui")
-animation = &"moving-down"
+animation = &"hit-up"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player"]
 shape = SubResource("CapsuleShape2D_np565")
@@ -310,6 +397,54 @@ script = ExtResource("62_q5xkf")
 
 [node name="Spawner" type="Node" parent="Entities"]
 script = ExtResource("63_j2fgb")
+
+[node name="Builder" type="Node" parent="."]
+
+[node name="Menu" type="CanvasLayer" parent="Builder"]
+layer = 3
+visible = false
+script = ExtResource("54_mn0gx")
+
+[node name="CenterContainer" type="CenterContainer" parent="Builder/Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Builder/Menu/CenterContainer"]
+layout_mode = 2
+
+[node name="Stone" type="Button" parent="Builder/Menu/CenterContainer/HBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("62_vbyxq")
+icon = ExtResource("63_iyw6r")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Furnance" type="Button" parent="Builder/Menu/CenterContainer/HBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("62_vbyxq")
+icon = ExtResource("64_tb50t")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Preview" type="Sprite2D" parent="Builder"]
+visible = false
+texture = ExtResource("54_fnis3")
+script = ExtResource("55_831b0")
+
+[node name="Area2D" type="Area2D" parent="Builder/Preview"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Builder/Preview/Area2D"]
+shape = SubResource("RectangleShape2D_sjas8")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
@@ -383,46 +518,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.596078)
 
-[node name="Builder" type="Node" parent="."]
-
-[node name="Menu" type="CanvasLayer" parent="Builder"]
-layer = 3
-visible = false
-script = ExtResource("54_mn0gx")
-
-[node name="CenterContainer" type="CenterContainer" parent="Builder/Menu"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Light" type="ColorRect" parent="."]
 mouse_filter = 2
-
-[node name="Stone" type="Button" parent="Builder/Menu/CenterContainer"]
-process_mode = 3
-custom_minimum_size = Vector2(130, 130)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("56_ojatx")
-text = "Stone"
-
-[node name="Preview" type="Sprite2D" parent="Builder"]
-visible = false
-texture = ExtResource("54_fnis3")
-script = ExtResource("55_831b0")
-
-[node name="Area2D" type="Area2D" parent="Builder/Preview"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Builder/Preview/Area2D"]
-shape = SubResource("RectangleShape2D_sjas8")
-
-[node name="Day Time" type="Node" parent="."]
+color = Color(0, 0, 0, 0.729412)
 script = ExtResource("56_piciw")
 
-[node name="Light" type="CanvasModulate" parent="Day Time"]
-
+[connection signal="animation_finished" from="Entities/Player/AnimatedSprite2D" to="Entities/Player" method="_on_animation_finished"]
+[connection signal="pressed" from="Builder/Menu/CenterContainer/HBoxContainer/Stone" to="Builder/Menu" method="on_select_stone"]
+[connection signal="pressed" from="Builder/Menu/CenterContainer/HBoxContainer/Furnance" to="Builder/Menu" method="on_select_furnance"]
+[connection signal="input_event" from="Builder/Preview/Area2D" to="Builder/Preview" method="_on_area_2d_input_event"]
 [connection signal="pressed" from="UI/Build" to="UI" method="_on_build_pressed"]
 [connection signal="pressed" from="UI/Open Editor" to="UI" method="_on_editor_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]
-[connection signal="pressed" from="Builder/Menu/CenterContainer/Stone" to="Builder/Menu" method="on_select_stone"]
-[connection signal="input_event" from="Builder/Preview/Area2D" to="Builder/Preview" method="_on_area_2d_input_event"]
