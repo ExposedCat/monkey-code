@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @onready var area = $Area2D
+@onready var menu = $"../Build Menu"
 
 var collides = false
 
@@ -18,6 +19,5 @@ func _process(_delta: float) -> void:
 		handle_collision(area.has_overlapping_areas() or area.has_overlapping_bodies())
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	print("event")
 	if event is InputEventMouseButton and not collides:
-		$"../Menu".on_build(position)
+		menu.on_build(position)

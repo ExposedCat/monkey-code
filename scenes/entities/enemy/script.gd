@@ -47,13 +47,16 @@ func _enter_tree() -> void:
 		"id": get_instance_id()
 	})
 	
+func play_action():
+	sprite.play("monkey-%s" % [last_action])
+	
 func _ready() -> void:
-	sprite.play(last_action)
+	play_action()
 
 func set_action(new_action: StringName):
 	if last_action != new_action:
 		last_action = new_action
-		sprite.play(new_action)
+		play_action()
 		match new_action:
 			"moving":
 				jump_sound.play()

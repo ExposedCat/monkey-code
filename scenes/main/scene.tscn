@@ -400,12 +400,12 @@ script = ExtResource("63_j2fgb")
 
 [node name="Builder" type="Node" parent="."]
 
-[node name="Menu" type="CanvasLayer" parent="Builder"]
+[node name="Build Menu" type="CanvasLayer" parent="Builder"]
 layer = 3
 visible = false
 script = ExtResource("54_mn0gx")
 
-[node name="CenterContainer" type="CenterContainer" parent="Builder/Menu"]
+[node name="CenterContainer" type="CenterContainer" parent="Builder/Build Menu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -413,10 +413,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Builder/Menu/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Builder/Build Menu/CenterContainer"]
 layout_mode = 2
 
-[node name="Stone" type="Button" parent="Builder/Menu/CenterContainer/HBoxContainer"]
+[node name="Stone" type="Button" parent="Builder/Build Menu/CenterContainer/HBoxContainer"]
 process_mode = 3
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -426,7 +426,7 @@ icon = ExtResource("63_iyw6r")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Furnance" type="Button" parent="Builder/Menu/CenterContainer/HBoxContainer"]
+[node name="Furnance" type="Button" parent="Builder/Build Menu/CenterContainer/HBoxContainer"]
 process_mode = 3
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -436,14 +436,14 @@ icon = ExtResource("64_tb50t")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Preview" type="Sprite2D" parent="Builder"]
+[node name="Build Preview" type="Sprite2D" parent="Builder"]
 visible = false
 texture = ExtResource("54_fnis3")
 script = ExtResource("55_831b0")
 
-[node name="Area2D" type="Area2D" parent="Builder/Preview"]
+[node name="Area2D" type="Area2D" parent="Builder/Build Preview"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Builder/Preview/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Builder/Build Preview/Area2D"]
 shape = SubResource("RectangleShape2D_sjas8")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -472,6 +472,7 @@ offset_left = 1012.0
 offset_top = 76.0
 offset_right = 1142.0
 offset_bottom = 131.714
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("56_ojatx")
 shortcut = SubResource("Shortcut_awsvo")
@@ -524,9 +525,9 @@ color = Color(0, 0, 0, 0.729412)
 script = ExtResource("56_piciw")
 
 [connection signal="animation_finished" from="Entities/Player/AnimatedSprite2D" to="Entities/Player" method="_on_animation_finished"]
-[connection signal="pressed" from="Builder/Menu/CenterContainer/HBoxContainer/Stone" to="Builder/Menu" method="on_select_stone"]
-[connection signal="pressed" from="Builder/Menu/CenterContainer/HBoxContainer/Furnance" to="Builder/Menu" method="on_select_furnance"]
-[connection signal="input_event" from="Builder/Preview/Area2D" to="Builder/Preview" method="_on_area_2d_input_event"]
+[connection signal="pressed" from="Builder/Build Menu/CenterContainer/HBoxContainer/Stone" to="Builder/Build Menu" method="on_select_stone"]
+[connection signal="pressed" from="Builder/Build Menu/CenterContainer/HBoxContainer/Furnance" to="Builder/Build Menu" method="on_select_furnance"]
+[connection signal="input_event" from="Builder/Build Preview/Area2D" to="Builder/Build Preview" method="_on_area_2d_input_event"]
 [connection signal="pressed" from="UI/Build" to="UI" method="_on_build_pressed"]
 [connection signal="pressed" from="UI/Open Editor" to="UI" method="_on_editor_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]

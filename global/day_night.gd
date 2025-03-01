@@ -4,7 +4,7 @@ signal time_change(time: float)
 
 const MIN_DARK = 0
 const MAX_DARK = 0.8
-const DAY_LENGTH = 1 * 1_000
+const DAY_LENGTH = 60 * 1_000
 
 var time_offset = 0
 
