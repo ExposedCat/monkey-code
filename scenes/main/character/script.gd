@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var speed: float = 250.0
 @export var hit_cooldown: float = 500.0
 @export var hit_range: float = 50.0
+@export var initial_health: float = 250.0
 
 var action = "standing";
 var last_direction = "down";
@@ -18,11 +19,22 @@ var direction_vectors = {
 	"right": Vector2(1, 0)
 }
 
+func update_health(_change: float, new_health: float):
+	$"../../UI/HP".text = "HP %.1f" % new_health
+	
+func update_money(_change: float, new_money: float):
+	$"../../UI/Money".text = "$ %.2f" % new_money
+
+
 func _ready():
 	position.x = float(Constants.width) / 2 + 5
 	position.y = float(Constants.height) / 2 + 20
 	camera.limit_right = Constants.width
 	camera.limit_bottom = Constants.height
+	Wallet.player_hp.value_change.connect(update_health)
+	Wallet.player_money.value_change.connect(update_money)
+	Wallet.player_hp.change(initial_health)
+	Wallet.player_money.change(0)
 
 func _physics_process(_delta):
 	if action == "hit":

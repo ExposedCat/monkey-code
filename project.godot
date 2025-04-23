@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Bridge="*res://global/bridge.gd"
 Constants="*res://global/constants.gd"
+Wallet="*res://global/wallet.gd"
 InventoryManager="*res://global/inventory_manager.gd"
 DayNight="*res://global/day_night.gd"
 
