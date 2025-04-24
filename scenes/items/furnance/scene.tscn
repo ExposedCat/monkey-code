@@ -40,7 +40,6 @@ shader_parameter/radius = 0.0
 shader_parameter/fade_width = 0.5
 
 [node name="Furnance" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_jpsev")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -102,7 +102,7 @@ shape = SubResource("RectangleShape2D_oo16m")
 
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_i3cd5")
+&"": SubResource("AnimationLibrary_i3cd5")
 }
 
 [connection signal="animation_finished" from="Effects" to="StaticBody2D" method="_on_animation_finished"]
