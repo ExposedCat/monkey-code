@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://0se83qcwni2b"]
+[gd_scene load_steps=86 format=3 uid="uid://0se83qcwni2b"]
 
 [ext_resource type="Script" uid="uid://tivtr264gkkn" path="res://scenes/main/script.gd" id="1_1o43a"]
 [ext_resource type="AudioStream" uid="uid://cpuujlsgdfp1x" path="res://assets/audio/midnight-forest.mp3" id="2_wgq16"]
@@ -56,6 +56,7 @@
 [ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://assets/ui/buttons/themes/main.theme" id="56_ojatx"]
 [ext_resource type="Script" uid="uid://cpjwjyfj8d641" path="res://scenes/main/day_time.gd" id="56_piciw"]
 [ext_resource type="Texture2D" uid="uid://bc0nkj0lkbua6" path="res://assets/entities/character/tile037.png" id="57_ofjrb"]
+[ext_resource type="Script" uid="uid://cmafh5nlovke" path="res://scenes/main/spawners/enemy.gd" id="58_1hrik"]
 [ext_resource type="Texture2D" uid="uid://badcgpddap7wc" path="res://assets/entities/character/tile038.png" id="58_ql5ub"]
 [ext_resource type="Texture2D" uid="uid://dl12hcwx3ciav" path="res://assets/entities/character/tile039.png" id="59_2nobr"]
 [ext_resource type="Texture2D" uid="uid://bxe631qdp62ji" path="res://assets/entities/character/tile040.png" id="60_yiccd"]
@@ -365,7 +366,7 @@ script = ExtResource("1_1o43a")
 [node name="Ambient" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("2_wgq16")
-volume_db = -8.0
+volume_db = -9.0
 autoplay = true
 parameters/looping = true
 
@@ -395,8 +396,11 @@ wait_time = 3.0
 autostart = true
 script = ExtResource("62_q5xkf")
 
-[node name="Spawner" type="Node" parent="Entities"]
+[node name="Item Spawner" type="Node" parent="Entities"]
 script = ExtResource("63_j2fgb")
+
+[node name="EnemySpawner" type="Node" parent="Entities"]
+script = ExtResource("58_1hrik")
 
 [node name="Builder" type="Node" parent="."]
 

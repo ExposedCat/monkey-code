@@ -20,12 +20,12 @@ func spawn(scene) -> void:
 
 func get_random_position(scene) -> Vector2:
 	var border_offset = 20
-	
+
 	var start_x = border_offset
 	var start_y = start_x
 	var end_x = Constants.width - border_offset
 	var end_y = Constants.height - border_offset
-	
+
 	for i in range(0, 1001):
 		var coords = Vector2(randf_range(start_x, end_x), randf_range(start_y, end_y))
 		if not scene["positions"].any(func (position): return position.distance_to(coords) < scene["min_distance"]) or i == 1000:
