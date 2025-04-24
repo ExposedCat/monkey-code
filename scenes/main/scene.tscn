@@ -60,7 +60,7 @@
 [ext_resource type="Texture2D" uid="uid://dl12hcwx3ciav" path="res://assets/entities/character/tile039.png" id="59_2nobr"]
 [ext_resource type="Texture2D" uid="uid://bxe631qdp62ji" path="res://assets/entities/character/tile040.png" id="60_yiccd"]
 [ext_resource type="Texture2D" uid="uid://dn1uu1pxce3u7" path="res://assets/entities/character/tile041.png" id="61_8c285"]
-[ext_resource type="Script" uid="uid://yu15sviyr6i6" path="res://scenes/main/spawners/enemy.gd" id="62_q5xkf"]
+[ext_resource type="Script" uid="uid://yu15sviyr6i6" path="res://scenes/main/spawners/monkey.gd" id="62_q5xkf"]
 [ext_resource type="Theme" uid="uid://cou7o5jtlpv3t" path="res://assets/ui/buttons/themes/square.theme" id="62_vbyxq"]
 [ext_resource type="Script" uid="uid://dsb0vklndav8e" path="res://scenes/main/ui/event_handler.gd" id="63_aasgi"]
 [ext_resource type="Texture2D" uid="uid://bp51r8yeh3ytc" path="res://assets/ui/icons/stone.png" id="63_iyw6r"]
@@ -390,7 +390,7 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player"]
 shape = SubResource("CapsuleShape2D_np565")
 
-[node name="Enemy Spawner" type="Timer" parent="Entities"]
+[node name="Monkey Spawner" type="Timer" parent="Entities"]
 wait_time = 3.0
 autostart = true
 script = ExtResource("62_q5xkf")

@@ -19,14 +19,14 @@ var set_follow__js = JavaScriptBridge.create_callback(set_follow)
 func set_follow(args):
 	if get_instance_id() == args[0]:
 		following = args[1]
-		
+
 var set_attack__js = JavaScriptBridge.create_callback(set_attack)
 func set_attack(args):
 	if get_instance_id() == args[0]:
 		var instance = instance_from_id(args[1])
 		if instance:
 			target = instance.get_child(0)
-		
+
 var set_give__js = JavaScriptBridge.create_callback(set_give)
 func set_give(args):
 	if get_instance_id() == args[0]:
@@ -40,16 +40,16 @@ func set_give(args):
 
 func _enter_tree() -> void:
 	player = get_node("../../Player")
-	Bridge.register_event("enemy:follow", set_follow__js)
-	Bridge.register_event("enemy:attack", set_attack__js)
-	Bridge.register_event("enemy:give", set_give__js)
-	Bridge.dispatch_event("enemy:spawned", {
+	Bridge.register_event("monkey:follow", set_follow__js)
+	Bridge.register_event("monkey:attack", set_attack__js)
+	Bridge.register_event("monkey:give", set_give__js)
+	Bridge.dispatch_event("monkey:spawned", {
 		"id": get_instance_id()
 	})
-	
+
 func play_action():
 	sprite.play("monkey-%s" % [last_action])
-	
+
 func _ready() -> void:
 	play_action()
 
@@ -66,7 +66,7 @@ func set_action(new_action: StringName):
 func stand():
 	set_action("standing")
 	velocity = Vector2.ZERO
-		
+
 func _physics_process(_delta: float) -> void:
 	if target and not is_instance_valid(target):
 		target = null

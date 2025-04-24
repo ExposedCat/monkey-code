@@ -4,16 +4,16 @@ declare type IStone = {
 	id: number;
 };
 
-declare type IEnemy = {
+declare type IMonkey = {
 	id: number;
 	setFollowPlayer(follow: boolean): void;
 	attack(target: IStone): void;
 	giveMe(type: ItemType, amount: number): void;
 };
 
-declare type EnemyEventMap = {
-	spawned: (enemy: IEnemy) => void;
-	clicked: (enemy: IEnemy) => void;
+declare type MonkeyEventMap = {
+	spawned: (monkey: IMonkey) => void;
+	clicked: (monkey: IMonkey) => void;
 };
 
 declare type StoneEventMap = {
@@ -25,7 +25,7 @@ declare type GameSdkEntry<M> = {
 };
 
 declare type GameSdk = {
-	enemy: GameSdkEntry<EnemyEventMap>;
+	monkey: GameSdkEntry<MonkeyEventMap>;
 	stone: GameSdkEntry<StoneEventMap>;
 };
 

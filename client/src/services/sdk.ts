@@ -2,19 +2,19 @@ class Stone implements IStone {
 	constructor(public id: number) {}
 }
 
-class Enemy implements IEnemy {
+class Monkey implements IMonkey {
 	constructor(public id: number) {}
 
 	setFollowPlayer(follow: boolean) {
-		godotBridge.dispatch("enemy:follow", [this.id, follow]);
+		godotBridge.dispatch("monkey:follow", [this.id, follow]);
 	}
 
 	attack(target: Stone) {
-		godotBridge.dispatch("enemy:attack", [this.id, target.id]);
+		godotBridge.dispatch("monkey:attack", [this.id, target.id]);
 	}
 
 	giveMe(type: ItemType, amount: number) {
-		godotBridge.dispatch("enemy:give", [this.id, type, amount]);
+		godotBridge.dispatch("monkey:give", [this.id, type, amount]);
 	}
 }
 
@@ -39,7 +39,7 @@ function makeGameSdkEntry<T, M>(
 export function setupGameSdk() {
 	// @ts-ignore
 	window.gameSdk = {
-		enemy: makeGameSdkEntry("enemy", Enemy),
+		monkey: makeGameSdkEntry("monkey", Monkey),
 		stone: makeGameSdkEntry("stone", Stone),
 	} as GameSdk;
 }
