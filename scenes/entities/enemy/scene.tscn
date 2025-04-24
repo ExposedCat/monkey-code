@@ -1,10 +1,10 @@
 [gd_scene load_steps=38 format=3 uid="uid://c8upr3a35a3b1"]
 
 [ext_resource type="AudioStream" uid="uid://253v5q57hvkb" path="res://assets/audio/slime.mp3" id="1_6oxwu"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/script.gd" id="1_vbt68"]
+[ext_resource type="Script" uid="uid://b3ebd2mvkuqvq" path="res://scenes/entities/enemy/script.gd" id="1_vbt68"]
 [ext_resource type="Texture2D" uid="uid://cijxlpxr0fx0v" path="res://assets/entities/slime/slime.png" id="2_e8a2g"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/event_handler.gd" id="3_in2nq"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/navigation.gd" id="3_u2qkq"]
+[ext_resource type="Script" uid="uid://3uxluudlkca1" path="res://scenes/entities/enemy/event_handler.gd" id="3_in2nq"]
+[ext_resource type="Script" uid="uid://uww8pii5fc3t" path="res://scenes/entities/enemy/navigation.gd" id="3_u2qkq"]
 [ext_resource type="Texture2D" uid="uid://cmhr28nudo7ha" path="res://assets/entities/slime/monkey-walk.png" id="4_thw4d"]
 [ext_resource type="Texture2D" uid="uid://f3i5n53128li" path="res://assets/entities/slime/monkey-idle.png" id="5_r2ode"]
 

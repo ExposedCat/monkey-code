@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxglpohcv51or"]
 
 [ext_resource type="Texture2D" uid="uid://mc563shir7dm" path="res://assets/map/light.png" id="1_b2ktj"]
-[ext_resource type="Script" path="res://scenes/items/light/script.gd" id="1_b375d"]
-[ext_resource type="Shader" path="res://scenes/items/light/light.gdshader" id="3_k0dyt"]
-[ext_resource type="Script" path="res://scenes/items/light/bottom_2.gd" id="4_7vurj"]
+[ext_resource type="Script" uid="uid://bysqewxsvtus8" path="res://scenes/items/light/script.gd" id="1_b375d"]
+[ext_resource type="Shader" uid="uid://bgb4o1q1d261s" path="res://scenes/items/light/light.gdshader" id="3_k0dyt"]
+[ext_resource type="Script" uid="uid://beyqvod4tquob" path="res://scenes/items/light/bottom_2.gd" id="4_7vurj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edqrq"]
 shader = ExtResource("3_k0dyt")

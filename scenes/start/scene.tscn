@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgmiikd2qijei"]
 
-[ext_resource type="Script" path="res://scenes/start/script.gd" id="1_dfnxi"]
+[ext_resource type="Script" uid="uid://idhdb62vbdud" path="res://scenes/start/script.gd" id="1_dfnxi"]
 [ext_resource type="Theme" uid="uid://djq21beuqbtl5" path="res://assets/ui/buttons/themes/main.theme" id="1_muulw"]
 
 [node name="Control" type="Control"]

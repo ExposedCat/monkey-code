@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://xwcpbmcb5fu8"]
 
-[ext_resource type="Script" path="res://scenes/items/furnance/script.gd" id="1_jpsev"]
+[ext_resource type="Script" uid="uid://bki221leeeda2" path="res://scenes/items/furnance/script.gd" id="1_jpsev"]
 [ext_resource type="Texture2D" uid="uid://3lc7ktv4f6lq" path="res://assets/buildables/furnance-closed.png" id="2_vc8a1"]
 [ext_resource type="Texture2D" uid="uid://bjlvhu7bimmfg" path="res://assets/buildables/furnance-open.png" id="3_fjmy7"]
-[ext_resource type="Shader" path="res://scenes/items/light/light.gdshader" id="4_kl7fa"]
-[ext_resource type="Script" path="res://scenes/items/furnance/light.gd" id="5_h75ui"]
+[ext_resource type="Shader" uid="uid://bgb4o1q1d261s" path="res://scenes/items/light/light.gdshader" id="4_kl7fa"]
+[ext_resource type="Script" uid="uid://cwjyqwp145q7t" path="res://scenes/items/furnance/light.gd" id="5_h75ui"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rfgd2"]
 animations = [{

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://ckdslrkanadyi"]
 
-[ext_resource type="Script" path="res://scenes/items/stone/script.gd" id="1_k6hno"]
-[ext_resource type="Shader" path="res://effects/hit.gdshader" id="2_14e6k"]
+[ext_resource type="Script" uid="uid://bt1oc7vtl6gam" path="res://scenes/items/stone/script.gd" id="1_k6hno"]
+[ext_resource type="Shader" uid="uid://buo6crirbcnnu" path="res://effects/hit.gdshader" id="2_14e6k"]
 [ext_resource type="Texture2D" uid="uid://budqjl7eivp2x" path="res://assets/resources/stone/stone.png" id="2_t5nqt"]
-[ext_resource type="Script" path="res://scenes/items/stone/event_handler.gd" id="3_6fg6y"]
-[ext_resource type="Script" path="res://scenes/items/stone/sprite.gd" id="4_ldkg2"]
+[ext_resource type="Script" uid="uid://b435ac7piien2" path="res://scenes/items/stone/event_handler.gd" id="3_6fg6y"]
+[ext_resource type="Script" uid="uid://bnlwqqd71c4fa" path="res://scenes/items/stone/sprite.gd" id="4_ldkg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5wqk"]
 size = Vector2(15, 14.75)
@@ -68,9 +68,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3cd5"]
 _data = {
-"RESET": SubResource("Animation_k755n"),
-"die": SubResource("Animation_yqj5y"),
-"hit": SubResource("Animation_nj00v")
+&"RESET": SubResource("Animation_k755n"),
+&"die": SubResource("Animation_yqj5y"),
+&"hit": SubResource("Animation_nj00v")
 }
 
 [node name="Stone" type="Node2D"]

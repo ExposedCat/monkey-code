@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cajqkglqgsgek"]
 
-[ext_resource type="Script" path="res://scenes/main/background.gd" id="1_dk2bp"]
+[ext_resource type="Script" uid="uid://bqsaka4frmhlr" path="res://scenes/main/background.gd" id="1_dk2bp"]
 [ext_resource type="Texture2D" uid="uid://c5taendc8auy8" path="res://assets/map/Cliff_Tile.png" id="1_je5i4"]
-[ext_resource type="Script" path="res://scenes/main/world/terrain.gd" id="2_bupiu"]
-[ext_resource type="Script" path="res://scenes/main/world/walls.gd" id="3_vr67h"]
-[ext_resource type="Script" path="res://scenes/map/clouds.gd" id="4_5vplk"]
+[ext_resource type="Script" uid="uid://b8q40bxbepglu" path="res://scenes/main/world/terrain.gd" id="2_bupiu"]
+[ext_resource type="Script" uid="uid://gjc3ine3hcom" path="res://scenes/main/world/walls.gd" id="3_vr67h"]
+[ext_resource type="Script" uid="uid://cml3fj58li3rt" path="res://scenes/map/clouds.gd" id="4_5vplk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlunu"]
 texture = ExtResource("1_je5i4")
