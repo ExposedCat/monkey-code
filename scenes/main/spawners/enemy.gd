@@ -2,10 +2,10 @@ extends Node
 
 @export var enemy_scene = preload("res://scenes/entities/enemy/scene.tscn")
 
-var spawned = true
+var spawned = false
 
 var scenes = [
-	{"scene": enemy_scene, "amount": 20, "min_distance": 5, "positions": []},
+	{"scene": enemy_scene, "amount": 10, "min_distance": 5, "positions": []},
 ]
 
 func _ready() -> void:

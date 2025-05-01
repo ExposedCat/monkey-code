@@ -78,7 +78,7 @@ _data = {
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 volume_db = -10.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["hittable"]]
 script = ExtResource("1_k6hno")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
